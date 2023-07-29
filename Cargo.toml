@@ -1,0 +1,15 @@
+[package]
+name = "foxes"
+version = "1.0.0"
+edition = "2021"
+description = "An API for all your fox image needs"
+license = "MIT"
+keywords = ["fox", "foxes", "api", "foxes.cool"]
+repository = "https://github.com/Foxes-cool/Foxes-Rust"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lazy_static = "1.4.0"
+rand = "0.8.5"
+ureq = { version = "2.7.1", default-features = false, features = ["tls"] }
