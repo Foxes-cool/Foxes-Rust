@@ -54,7 +54,7 @@ macro_rules! function {
                     Tags::$x,
                     Tag {
                         time: days,
-                        count: count,
+                        count,
                     },
                 );
             }
