@@ -1,10 +1,10 @@
 use lazy_static::lazy_static;
 use rand::Rng;
 use std::collections::HashMap;
+use std::fmt;
+use std::ops::Deref;
 use std::sync::RwLock;
 use std::time::{SystemTime, UNIX_EPOCH};
-use std::ops::Deref;
-use std::fmt;
 
 #[derive(Eq, Hash, PartialEq)]
 enum Tags {
@@ -59,7 +59,11 @@ macro_rules! function {
                 );
             }
             Some(Foxes {
-                string: format!("https://img.foxes.cool/{}/{}.jpg", $name, rand::thread_rng().gen_range(0..TIMES.read().ok()?.get(&Tags::$x)?.count))
+                string: format!(
+                    "https://img.foxes.cool/{}/{}.jpg",
+                    $name,
+                    rand::thread_rng().gen_range(0..TIMES.read().ok()?.get(&Tags::$x)?.count)
+                ),
             })
         }
     };
@@ -69,14 +73,12 @@ impl Foxes {
     fn add_argument(&self, argument: String) -> Foxes {
         if self.string.ends_with(".jpg") {
             Foxes {
-                string: format!("{}?{argument}", &self.string)
+                string: format!("{}?{argument}", &self.string),
             }
-        }
-        else {
+        } else {
             Foxes {
-                string: format!("{}&{argument}", &self.string)
+                string: format!("{}&{argument}", &self.string),
             }
-
         }
     }
 
